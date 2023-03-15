@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiuyun.biquge.mapper.BookMapper">
+
+    <resultMap id="BaseResultMap" type="com.jiuyun.biquge.bean.Book">
+            <id property="bookId" column="book_Id" jdbcType="INTEGER"/>
+            <result property="bookName" column="book_Name" jdbcType="VARCHAR"/>
+            <result property="bookIntro" column="book_Intro" jdbcType="VARCHAR"/>
+            <result property="bookAuthor" column="book_Author" jdbcType="VARCHAR"/>
+            <result property="bookClassId" column="book_Class_Id" jdbcType="INTEGER"/>
+            <result property="bookImage" column="book_image" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <resultMap id="BookAndClass" type="com.jiuyun.biquge.bean.Book">
+        <id property="bookId" column="book_Id" jdbcType="INTEGER"/>
+        <result property="bookName" column="book_Name" jdbcType="VARCHAR"/>
+        <result property="bookIntro" column="book_Intro" jdbcType="VARCHAR"/>
+        <result property="bookAuthor" column="book_Author" jdbcType="VARCHAR"/>
+        <result property="bookClassId" column="book_Class_Id" jdbcType="INTEGER"/>
+        <result property="bookImage" column="book_image" jdbcType="VARCHAR"/>
+        <association property="className" column="book_class_id" javaType="com.jiuyun.biquge.bean.Classify" select="com.jiuyun.biquge.mapper.ClassMapper.bookAndClass">
+            <result property="className" column="class_name" />
+        </association>
+    </resultMap>
+
+    <select id="historyBookList" resultMap="BookAndClass">
+        select * from n_book where book_id=#{history_book_id}
+    </select>
+
+    <select id="collectionBookList" resultMap="BookAndClass">
+        select * from n_book where book_id=#{collection_book_id}
+    </select>
+
+    <select id="classAndBook"  resultMap="com.jiuyun.biquge.mapper.BookMapper.BookAndClass">
+        select * from n_book where book_class_id=#{class_id}
+    </select>
+
+    <select id="getAllAndClassName" resultMap="BookAndClass" >
+        select * from n_book
+    </select>
+    <select id="getAllBookByClassId" resultMap="BookAndClass">
+        select * from n_book where book_class_id=#{classId}
+    </select>
+
+    <sql id="Base_Column_List">
+        book_Id,book_Name,book_Intro,
+        book_Author,book_Class_Id,book_image
+    </sql>
+</mapper>

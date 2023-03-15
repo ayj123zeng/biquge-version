@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiuyun.biquge.mapper.StarMapper">
+
+    <resultMap id="BaseResultMap" type="com.jiuyun.biquge.bean.Star">
+            <id property="starId" column="star_Id" jdbcType="INTEGER"/>
+            <result property="starUserId" column="star_User_Id" jdbcType="INTEGER"/>
+            <result property="starBookId" column="star_Book_Id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        star_Id,star_User_Id,star_Book_Id
+    </sql>
+</mapper>

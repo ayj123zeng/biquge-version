@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiuyun.biquge.mapper.ClassMapper">
+
+    <resultMap id="BaseResultMap" type="com.jiuyun.biquge.bean.Classify">
+            <id property="classId" column="class_Id" jdbcType="INTEGER"/>
+            <result property="className" column="class_Name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="ClassAndBook" type="com.jiuyun.biquge.bean.Classify">
+        <id property="classId" column="class_id"/>
+        <result property="className" column="class_name"/>
+        <collection property="bookList" column="class_id" select="com.jiuyun.biquge.mapper.BookMapper.classAndBook" >
+
+        </collection>
+    </resultMap>
+
+    <select id="bookAndClass" resultType="string">
+        select class_name from n_class where class_id=#{book_class_id}
+    </select>
+
+    <!--List<Classify> getAllAndBook()-->
+    <select id="getAllAndBook" resultMap="ClassAndBook">
+        select * from n_class
+    </select>
+
+    <sql id="Base_Column_List">
+        class_Id,class_Name
+    </sql>
+</mapper>

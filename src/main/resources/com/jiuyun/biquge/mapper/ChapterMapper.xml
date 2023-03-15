@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiuyun.biquge.mapper.ChapterMapper">
+
+    <resultMap id="BaseResultMap" type="com.jiuyun.biquge.bean.Chapter">
+            <id property="chapterId" column="chapter_Id" jdbcType="INTEGER"/>
+            <result property="chapterNumber" column="chapter_Number" jdbcType="INTEGER"/>
+            <result property="chapterName" column="chapter_Name" jdbcType="VARCHAR"/>
+            <result property="chapterContent" column="chapter_Content" jdbcType="VARCHAR"/>
+            <result property="chapterBookId" column="chapter_Book_Id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        chapter_Id,chapter_Number,chapter_Name,
+        chapter_Content,chapter_Book_Id
+    </sql>
+</mapper>

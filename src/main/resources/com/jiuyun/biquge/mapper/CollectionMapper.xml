@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiuyun.biquge.mapper.CollectionMapper">
+
+    <resultMap id="BaseResultMap" type="com.jiuyun.biquge.bean.Collection">
+            <id property="collectionUserId" column="collection_user_id" jdbcType="INTEGER"/>
+            <result property="collectionStatus" column="collection_status" jdbcType="INTEGER"/>
+            <result property="collectionBookId" column="collection_book_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap id="CollectionAndBookList" type="com.jiuyun.biquge.bean.Collection">
+        <id property="collectionUserId" column="collection_user_id" jdbcType="INTEGER"/>
+        <result property="collectionStatus" column="collection_status" jdbcType="INTEGER"/>
+        <result property="collectionBookId" column="collection_book_id" jdbcType="INTEGER"/>
+        <collection property="book" column="collection_book_id" select="com.jiuyun.biquge.mapper.BookMapper.collectionBookList">
+
+        </collection>
+    </resultMap>
+
+    <select id="getCollectionBookListByUserId" resultMap="CollectionAndBookList">
+        select * from n_collection where collection_user_id=#{userId}
+    </select>
+
+    <sql id="Base_Column_List">
+        collection_user_id,collection_status,collection_book_id
+    </sql>
+</mapper>

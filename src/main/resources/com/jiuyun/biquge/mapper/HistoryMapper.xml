@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiuyun.biquge.mapper.HistoryMapper">
+
+    <resultMap id="BaseResultMap" type="com.jiuyun.biquge.bean.History">
+            <id property="historyUserId" column="history_user_id" jdbcType="INTEGER"/>
+            <result property="historyBookId" column="history_book_id" jdbcType="INTEGER"/>
+            <result property="historyChapterId" column="history_chapter_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap id="HistoryAndBook" type="com.jiuyun.biquge.bean.History">
+        <id property="historyUserId" column="history_user_id" jdbcType="INTEGER"/>
+        <result property="historyBookId" column="history_book_id" jdbcType="INTEGER"/>
+        <result property="historyChapterId" column="history_chapter_id" jdbcType="INTEGER"/>
+        <collection property="book" column="history_book_id" select="com.jiuyun.biquge.mapper.BookMapper.historyBookList">
+
+        </collection>
+    </resultMap>
+
+    <select id="getAllByUserId" resultMap="HistoryAndBook" >
+        select * from n_history where history_user_id=#{userId}
+    </select>
+
+    <sql id="Base_Column_List">
+        history_user_id,history_book_id,history_chapter_id
+    </sql>
+
+</mapper>
