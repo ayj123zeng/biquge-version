@@ -18,6 +18,7 @@ public class Book implements Serializable {
     private String className;
     /**
      * hhh  mmm abb zjh
+     * hhh  mmm abb qwe
      */
     @TableId(value = "book_Id", type = IdType.AUTO)
     private Integer bookId;
