@@ -17,7 +17,7 @@ public class Book implements Serializable {
     @TableField(exist = false)
     private String className;
     /**
-     * hhh
+     * hhh  mmm
      */
     @TableId(value = "book_Id", type = IdType.AUTO)
     private Integer bookId;
